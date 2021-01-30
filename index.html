@@ -59,14 +59,14 @@
             </div>
             <div class="input-group f-class">
                 <div>
-                    <button id="btn-decrease" class="plus-minus-btn">-</button>
+                    <button onclick="getSlotsAmount(false);" class="plus-minus-btn">-</button>
                 </div>
                 <div>
-                    <label for="">First Class ($150)</label>
-                    <input id="first-class-count" class="inp-style inp-width" type="number" name="" value="0">
+                    <label for="">First Class ($ <span id="first-class-ticket-charge">150</span> )</label>
+                    <input id="first-class-count" class="inp-style inp-width" type="number" name="" value="1">
                 </div>
                 <div>
-                    <button id="btn-increase" class="plus-minus-btn">+</button>
+                    <button onclick="getSlotsAmount(true);" class="plus-minus-btn">+</button>
                 </div>
             </div>
 
@@ -114,15 +114,6 @@
         </div>
     </main>
     <script>
-        const plusBtn = document.getElementById("btn-increase").addEventListener("click", function () {
-            getSlotsAmount(true);
-            // const firstClassInput = document.getElementById("first-class-count");
-            // const firstClassCount = parseInt(firstClassInput.value);
-            // const newFirstClassCount = firstClassCount + 1;
-            // firstClassInput.value = newFirstClassCount;
-            // console.log(firstClassInput.value);
-        })
-
         function getSlotsAmount(increase) {
             const firstClassInput = document.getElementById("first-class-count");
             const firstClassCount = parseInt(firstClassInput.value);
@@ -137,13 +128,13 @@
                 }
             }
             firstClassInput.value = newFirstClassCount;
-            console.log(firstClassInput.value);
+            
+            const slotsCharge = document.getElementById("first-class-ticket-charge");
+            const perSlotsCharge = parseInt(slotsCharge.innerText);
+            const totalSlotsCharge = newFirstClassCount * 150;
+            // console.log(totalSlotsCharge);
+            slotsCharge.innerText = totalSlotsCharge;
         }
-
-
-        const minusBtn = document.getElementById("btn-decrease").addEventListener("click", function () {
-            getSlotsAmount(false);
-        })
     </script>
     <!--Thank You-->
 </body>
