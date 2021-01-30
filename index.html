@@ -41,20 +41,20 @@
             <h3>Book Ocean Time</h3>
             <div class="input-group">
                 <label for="">Flying From</label>
-                <input class="inp-style" type="text" name="" placeholder="Dhake, Bangladesh">
+                <input id="flying-from" class="inp-style" type="text" name="" placeholder="Dhake, Bangladesh" value="">
             </div>
             <div class="input-group">
                 <label for="">Flying To</label>
-                <input class="inp-style" type="text" name="" placeholder="New York, United States">
+                <input id="flying-to" class="inp-style" type="text" name="" placeholder="New York, United States" value="">
             </div>
             <div class="inputs">
                 <div class="input-group">
                     <label" for="">Departure</label>
-                        <input class="inp-style" type="date" name="">
+                        <input id="departure-date" class="inp-style" type="date" name="" value="">
                 </div>
                 <div class="input-group">
                     <label for="">Return</label>
-                    <input class="inp-style" type="date" name="">
+                    <input id="return-date" class="inp-style" type="date" name="" value="">
                 </div>
             </div>
             <!-- first class section -->
@@ -92,7 +92,7 @@
                         <p>Subtotal</p>
                     </div>
                     <div class="right">
-                        <p>$<span id="sub-total">500</span> </p>
+                        <p>$<span id="sub-total">250</span> </p>
                     </div>
                 </div>
 
@@ -101,7 +101,7 @@
                         <p>Charge 10% VAT</p>
                     </div>
                     <div class="right">
-                        <p>$<span id="vat-total">50</span> </p>
+                        <p>$<span id="vat-total">25</span> </p>
                     </div>
                 </div>
                 <hr>
@@ -110,7 +110,7 @@
                         <h5>Total</h5>
                     </div>
                     <div class="right">
-                        <p>$<span id="total-total">550</span> </p>
+                        <p>$<span id="total-total">275</span> </p>
                     </div>
                 </div>
             </div>
@@ -132,7 +132,7 @@
                     <h5>Flying From</h5>
                 </div>
                 <div class="right">
-                    <h5>asdasdasd</h5>
+                    <h5 id="flying-from-output">****</h5>
                 </div>
             </div>
             <div class="amount">
@@ -141,7 +141,7 @@
                     <br>
                 </div>
                 <div class="right">
-                    <h5>asdassadd</h5>
+                    <h5 id="flying-to-output">****</h5>
                 </div>
             </div>
             <hr>
@@ -151,7 +151,7 @@
                     <h5>Departure</h5>
                 </div>
                 <div class="right">
-                    <h5>141sdasd4</h5>
+                    <h5>Date: <span id="departure-date-output">****</span></h5>
                 </div>
             </div>
             <div class="amount">
@@ -159,7 +159,7 @@
                     <h5>Return</h5>
                 </div>
                 <div class="right">
-                    <h5>146864sdasdasdsa</h5>
+                    <h5>Date: <span id="return-date-output">****</span></h5>
                 </div>
             </div>
             <br>
@@ -170,7 +170,7 @@
                     <h5>First Class</h5>
                 </div>
                 <div class="right">
-                    <h5>10x</h5>
+                    <h5>$<span id="first-class-ticket-charge-output">0000</span></h5>
                 </div>
             </div>
             <div class="amount">
@@ -178,7 +178,7 @@
                     <h5>Economic Class</h5>
                 </div>
                 <div class="right">
-                    <h5>15x</h5>
+                    <h5>$<span id="economy-class-ticket-charge-output">0000</span></h5>
                 </div>
             </div>
             <br>
@@ -189,7 +189,7 @@
                     <h5>Sub-total</h5>
                 </div>
                 <div class="right">
-                    <h5>$151551</h5>
+                    <h5>$<span id="sub-total-output">0000</span></h5>
                 </div>
             </div>
             <div class="amount">
@@ -197,7 +197,7 @@
                     <h5>Vat</h5>
                 </div>
                 <div class="right">
-                    <h5>$111111</h5>
+                    <h5>$<span id="vat-output">0000</span></h5>
                 </div>
             </div>
             <br>
@@ -207,7 +207,7 @@
                     <h3>Total</h3>
                 </div>
                 <div class="right">
-                    <h3>$1155454</h3>
+                    <h3>$<span id="total-output">0000</span></h3>
                 </div>
             </div> 
         </section>
@@ -263,6 +263,24 @@
             bookChart.style.display = "none";
             const bookMemo  = document.getElementById("booking-memo");
             bookMemo.style.display = "block";
+            //Flying from
+            document.getElementById("flying-from-output").innerText = document.getElementById("flying-from").value;
+            //Flying to
+            document.getElementById("flying-to-output").innerText = document.getElementById("flying-to").value;
+            //Departure Date
+            document.getElementById("departure-date-output").innerText = document.getElementById("departure-date").value;
+            //Return Date
+            document.getElementById("return-date-output").innerText = document.getElementById("return-date").value;
+            //First Class
+            document.getElementById("first-class-ticket-charge-output").innerText = document.getElementById("first-class-ticket-charge").innerText;
+            //Economic Class
+            document.getElementById("economy-class-ticket-charge-output").innerText = document.getElementById("economy-class-ticket-charge").innerText;
+            //sub-total
+            document.getElementById("sub-total-output").innerText = document.getElementById("sub-total").innerText;
+            //vat
+            document.getElementById("vat-output").innerText = document.getElementById("vat-total").innerText;
+            //total
+            document.getElementById("total-output").innerText = document.getElementById("total-total").innerText;
         }
     </script>
     <!--Thank You-->
