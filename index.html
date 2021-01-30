@@ -90,7 +90,7 @@
                         <p>Subtotal</p>
                     </div>
                     <div class="right">
-                        <p>$500</p>
+                        <p>$<span id="sub-total">500</span> </p>
                     </div>
                 </div>
 
@@ -99,7 +99,7 @@
                         <p>Charge 10% VAT</p>
                     </div>
                     <div class="right">
-                        <p>$50</p>
+                        <p>$<span id="vat-total">50</span> </p>
                     </div>
                 </div>
                 <hr>
@@ -108,7 +108,7 @@
                         <h4>Total</h4>
                     </div>
                     <div class="right">
-                        <p>$550</p>
+                        <p>$<span id="total-total">550</span> </p>
                     </div>
                 </div>
             </div>
@@ -117,55 +117,48 @@
     </main>
 
     <script>
-        // first class
         function getSlotsAmount(cabin, increase) {
-            const firstClassInput = document.getElementById(cabin + "-count");
-            const firstClassCount = parseInt(firstClassInput.value);
-            let newFirstClassCount = firstClassCount;
+            const cabinClassInput = document.getElementById(cabin + "-count");
+            const cabinClassCount = parseInt(cabinClassInput.value);
+            let newCabinClassCount = cabinClassCount;
             if (increase == true) {
-                newFirstClassCount = firstClassCount + 1;
+                newCabinClassCount = cabinClassCount + 1;
             }
             if (increase == false) {
-                newFirstClassCount = firstClassCount - 1;
-                if (newFirstClassCount < 0) {
+                newCabinClassCount = cabinClassCount - 1;
+                if (newCabinClassCount < 0) {
                     return 0;
                 }
             }
-            firstClassInput.value = newFirstClassCount;
+            cabinClassInput.value = newCabinClassCount;                          //showed value in first/economy class span
 
             const slotsCharge = document.getElementById(cabin + "-ticket-charge");
             const perSlotsCharge = parseInt(slotsCharge.innerText);
             let totalSlotsCharge = 0;
             if(cabin == "first-class"){
-                totalSlotsCharge = newFirstClassCount * 150;
+                totalSlotsCharge = newCabinClassCount * 150;
             }
             if(cabin == "economy-class"){
-                totalSlotsCharge = newFirstClassCount * 100;
+                totalSlotsCharge = newCabinClassCount * 100;
             }
             slotsCharge.innerText = totalSlotsCharge;
+
+            //subtotal
+            const firstClassCabin = document.getElementById("first-class-ticket-charge")
+            const firstClassCabinCharge = parseInt(firstClassCabin.innerText);
+            const economyClassCabin = document.getElementById("economy-class-ticket-charge")
+            const economyClassCabinCharge = parseInt(economyClassCabin.innerText);
+
+            const subTotal = firstClassCabinCharge + economyClassCabinCharge;
+            document.getElementById("sub-total").innerText = subTotal;
+
+            const vat = Math.round(subTotal * 0.1);
+            document.getElementById("vat-total").innerText = vat;
+
+            const total = subTotal + vat;
+            document.getElementById("total-total").innerText = total;
+
         }
-
-        //economy class
-        // function getsSlotsAmount(increase) {
-        //     const economyClassInput = document.getElementById("economy-class-count");
-        //     const economyClassCount = parseInt(economyClassInput.value);
-        //     let newEconomyClassCount = economyClassCount;
-        //     if (increase == true) {
-        //         newEconomyClassCount = economyClassCount + 1;
-        //     }
-        //     if (increase == false) {
-        //         newEconomyClassCount = economyClassCount - 1;
-        //         if (newEconomyClassCount < 0) {
-        //             return 0;
-        //         }
-        //     }
-        //     economyClassInput.value = newEconomyClassCount;
-
-        //     const slotsCharge = document.getElementById("economy-class-ticket-charge");
-        //     const perSlotsCharge = parseInt(slotsCharge.innerText);
-        //     const totalSlotsCharge = newEconomyClassCount * 100;
-        //     slotsCharge.innerText = totalSlotsCharge;
-        // }
     </script>
     <!--Thank You-->
 </body>
