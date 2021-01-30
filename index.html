@@ -30,14 +30,14 @@
     <main class="main-content container">
 
         <div class="booking-content">
-            <h1><span style="color: #E33741;">Cruise</span> Queen</h1>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+            <h1><span style="color: #E33741;">Cruise</span> <span style="text-shadow: 2px 2px 8px black;"> Queen</span></h1>
+            <p style="color:white; text-shadow: 2px 2px 5px black;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
                 industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-                scrambled it to make a type specimen book./p>
+                scrambled it to make a type specimen book.</p>
         </div>
 
-
-        <div class="booking-form">
+        <!-- book schedule -->
+        <section id="booking-chart" class="booking-form">
             <h3>Book Ocean Time</h3>
             <div class="input-group">
                 <label for="">Flying From</label>
@@ -64,7 +64,8 @@
                 </div>
                 <div>
                     <label for="">First Class ($<span id="first-class-ticket-charge">150</span> )</label>
-                    <input onclick="getSlotsAmount('first-class');" id="first-class-count" class="inp-style inp-width" type="number" name="" value="1">
+                    <input onclick="getSlotsAmount('first-class');" id="first-class-count" class="inp-style inp-width"
+                        type="number" name="" value="1">
                 </div>
                 <div>
                     <button onclick="getSlotsAmount('first-class', true);" class="plus-minus-btn">+</button>
@@ -77,7 +78,8 @@
                 </div>
                 <div>
                     <label for="">Economy ($<span id="economy-class-ticket-charge">100</span> )</label>
-                    <input onclick="getSlotsAmount('economy-class');" id="economy-class-count" class="inp-style inp-width" type="number" name="" value="1">
+                    <input onclick="getSlotsAmount('economy-class');" id="economy-class-count"
+                        class="inp-style inp-width" type="number" name="" value="1">
                 </div>
                 <div>
                     <button onclick="getSlotsAmount('economy-class', true);" class="plus-minus-btn">+</button>
@@ -105,15 +107,110 @@
                 <hr>
                 <div class="amount">
                     <div class="left">
-                        <h4>Total</h4>
+                        <h5>Total</h5>
                     </div>
                     <div class="right">
                         <p>$<span id="total-total">550</span> </p>
                     </div>
                 </div>
             </div>
-            <button class="btn-style">Book Now</button>
-        </div>
+            <button onclick="clickBookBtn()" class="btn-style">Book Now</button>
+        </section>
+
+        <!-- booked memo -->
+        <section id="booking-memo" class="booking-form calculations">
+            <div>
+                <h1 style="text-align: center;"> <span style="color: #E33741;">CRUISE</span> <span style="color: white; text-shadow: 2px 2px 7px black;">QUEEN</span> </h1>
+            </div>
+            <div>
+                <h2 style="text-align: center;">Ocean Time</h2>
+                <hr><hr>
+                <br>
+            </div>
+            <div class="amount">
+                <div class="left">
+                    <h5>Flying From</h5>
+                </div>
+                <div class="right">
+                    <h5>asdasdasd</h5>
+                </div>
+            </div>
+            <div class="amount">
+                <div class="left">
+                    <h5>Flying to</h5>
+                    <br>
+                </div>
+                <div class="right">
+                    <h5>asdassadd</h5>
+                </div>
+            </div>
+            <hr>
+            <br>
+            <div class="amount">
+                <div class="left">
+                    <h5>Departure</h5>
+                </div>
+                <div class="right">
+                    <h5>141sdasd4</h5>
+                </div>
+            </div>
+            <div class="amount">
+                <div class="left">
+                    <h5>Return</h5>
+                </div>
+                <div class="right">
+                    <h5>146864sdasdasdsa</h5>
+                </div>
+            </div>
+            <br>
+            <hr>
+            <br>
+            <div class="amount">
+                <div class="left">
+                    <h5>First Class</h5>
+                </div>
+                <div class="right">
+                    <h5>10x</h5>
+                </div>
+            </div>
+            <div class="amount">
+                <div class="left">
+                    <h5>Economic Class</h5>
+                </div>
+                <div class="right">
+                    <h5>15x</h5>
+                </div>
+            </div>
+            <br>
+            <hr>
+            <br>
+            <div class="amount">
+                <div class="left">
+                    <h5>Sub-total</h5>
+                </div>
+                <div class="right">
+                    <h5>$151551</h5>
+                </div>
+            </div>
+            <div class="amount">
+                <div class="left">
+                    <h5>Vat</h5>
+                </div>
+                <div class="right">
+                    <h5>$111111</h5>
+                </div>
+            </div>
+            <br>
+            <hr><hr>
+            <div class="amount">
+                <div class="left">
+                    <h3>Total</h3>
+                </div>
+                <div class="right">
+                    <h3>$1155454</h3>
+                </div>
+            </div> 
+        </section>
     </main>
 
     <script>
@@ -130,15 +227,15 @@
                     return 0;
                 }
             }
-            cabinClassInput.value = newCabinClassCount;                          
+            cabinClassInput.value = newCabinClassCount;
 
             const slotsCharge = document.getElementById(cabin + "-ticket-charge");
             const perSlotsCharge = parseInt(slotsCharge.innerText);
             let totalSlotsCharge = 0;
-            if(cabin == "first-class"){
+            if (cabin == "first-class") {
                 totalSlotsCharge = newCabinClassCount * 150;
             }
-            if(cabin == "economy-class"){
+            if (cabin == "economy-class") {
                 totalSlotsCharge = newCabinClassCount * 100;
             }
             slotsCharge.innerText = totalSlotsCharge;       //showed cabin class value in first/economy class span
@@ -160,7 +257,12 @@
             //total section
             const total = subTotal + vat;
             document.getElementById("total-total").innerText = total;
-
+        }
+        function clickBookBtn() {
+            const bookChart = document.getElementById("booking-chart");
+            bookChart.style.display = "none";
+            const bookMemo  = document.getElementById("booking-memo");
+            bookMemo.style.display = "block";
         }
     </script>
     <!--Thank You-->
