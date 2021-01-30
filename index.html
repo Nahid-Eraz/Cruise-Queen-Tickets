@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Curise Booking</title>
+    <title>Cruise Booking</title>
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;500;700&display=swap"
@@ -64,7 +64,7 @@
                 </div>
                 <div>
                     <label for="">First Class ($<span id="first-class-ticket-charge">150</span> )</label>
-                    <input id="first-class-count" class="inp-style inp-width" type="number" name="" value="1">
+                    <input onclick="getSlotsAmount('first-class');" id="first-class-count" class="inp-style inp-width" type="number" name="" value="1">
                 </div>
                 <div>
                     <button onclick="getSlotsAmount('first-class', true);" class="plus-minus-btn">+</button>
@@ -77,7 +77,7 @@
                 </div>
                 <div>
                     <label for="">Economy ($<span id="economy-class-ticket-charge">100</span> )</label>
-                    <input id="economy-class-count" class="inp-style inp-width" type="number" name="" value="1">
+                    <input onclick="getSlotsAmount('economy-class');" id="economy-class-count" class="inp-style inp-width" type="number" name="" value="1">
                 </div>
                 <div>
                     <button onclick="getSlotsAmount('economy-class', true);" class="plus-minus-btn">+</button>
@@ -130,7 +130,7 @@
                     return 0;
                 }
             }
-            cabinClassInput.value = newCabinClassCount;                          //showed value in first/economy class span
+            cabinClassInput.value = newCabinClassCount;                          
 
             const slotsCharge = document.getElementById(cabin + "-ticket-charge");
             const perSlotsCharge = parseInt(slotsCharge.innerText);
@@ -141,20 +141,23 @@
             if(cabin == "economy-class"){
                 totalSlotsCharge = newCabinClassCount * 100;
             }
-            slotsCharge.innerText = totalSlotsCharge;
+            slotsCharge.innerText = totalSlotsCharge;       //showed cabin class value in first/economy class span
 
-            //subtotal
+            //cabin class value parse converter section
             const firstClassCabin = document.getElementById("first-class-ticket-charge")
             const firstClassCabinCharge = parseInt(firstClassCabin.innerText);
             const economyClassCabin = document.getElementById("economy-class-ticket-charge")
             const economyClassCabinCharge = parseInt(economyClassCabin.innerText);
 
+            //subtotal section
             const subTotal = firstClassCabinCharge + economyClassCabinCharge;
             document.getElementById("sub-total").innerText = subTotal;
 
+            //vat section
             const vat = Math.round(subTotal * 0.1);
             document.getElementById("vat-total").innerText = vat;
 
+            //total section
             const total = subTotal + vat;
             document.getElementById("total-total").innerText = total;
 
