@@ -57,31 +57,33 @@
                     <input class="inp-style" type="date" name="">
                 </div>
             </div>
+            <!-- first class section -->
             <div class="input-group f-class">
                 <div>
-                    <button onclick="getSlotsAmount(false);" class="plus-minus-btn">-</button>
+                    <button onclick="getSlotsAmount('first-class', false);" class="plus-minus-btn">-</button>
                 </div>
                 <div>
-                    <label for="">First Class ($ <span id="first-class-ticket-charge">150</span> )</label>
+                    <label for="">First Class ($<span id="first-class-ticket-charge">150</span> )</label>
                     <input id="first-class-count" class="inp-style inp-width" type="number" name="" value="1">
                 </div>
                 <div>
-                    <button onclick="getSlotsAmount(true);" class="plus-minus-btn">+</button>
+                    <button onclick="getSlotsAmount('first-class', true);" class="plus-minus-btn">+</button>
+                </div>
+            </div>
+            <!-- economy class section -->
+            <div class="input-group f-class">
+                <div>
+                    <button onclick="getSlotsAmount('economy-class', false);" class="plus-minus-btn">-</button>
+                </div>
+                <div>
+                    <label for="">Economy ($<span id="economy-class-ticket-charge">100</span> )</label>
+                    <input id="economy-class-count" class="inp-style inp-width" type="number" name="" value="1">
+                </div>
+                <div>
+                    <button onclick="getSlotsAmount('economy-class', true);" class="plus-minus-btn">+</button>
                 </div>
             </div>
 
-            <div class="input-group f-class">
-                <div>
-                    <button class="plus-minus-btn">-</button>
-                </div>
-                <div>
-                    <label for="">Economy ($100)</label>
-                    <input class="inp-style inp-width" type="number" name="">
-                </div>
-                <div>
-                    <button class="plus-minus-btn">+</button>
-                </div>
-            </div>
             <div class="calculations">
                 <div class="amount">
                     <div class="left">
@@ -113,9 +115,11 @@
             <button class="btn-style">Book Now</button>
         </div>
     </main>
+
     <script>
-        function getSlotsAmount(increase) {
-            const firstClassInput = document.getElementById("first-class-count");
+        // first class
+        function getSlotsAmount(cabin, increase) {
+            const firstClassInput = document.getElementById(cabin + "-count");
             const firstClassCount = parseInt(firstClassInput.value);
             let newFirstClassCount = firstClassCount;
             if (increase == true) {
@@ -128,13 +132,40 @@
                 }
             }
             firstClassInput.value = newFirstClassCount;
-            
-            const slotsCharge = document.getElementById("first-class-ticket-charge");
+
+            const slotsCharge = document.getElementById(cabin + "-ticket-charge");
             const perSlotsCharge = parseInt(slotsCharge.innerText);
-            const totalSlotsCharge = newFirstClassCount * 150;
-            // console.log(totalSlotsCharge);
+            let totalSlotsCharge = 0;
+            if(cabin == "first-class"){
+                totalSlotsCharge = newFirstClassCount * 150;
+            }
+            if(cabin == "economy-class"){
+                totalSlotsCharge = newFirstClassCount * 100;
+            }
             slotsCharge.innerText = totalSlotsCharge;
         }
+
+        //economy class
+        // function getsSlotsAmount(increase) {
+        //     const economyClassInput = document.getElementById("economy-class-count");
+        //     const economyClassCount = parseInt(economyClassInput.value);
+        //     let newEconomyClassCount = economyClassCount;
+        //     if (increase == true) {
+        //         newEconomyClassCount = economyClassCount + 1;
+        //     }
+        //     if (increase == false) {
+        //         newEconomyClassCount = economyClassCount - 1;
+        //         if (newEconomyClassCount < 0) {
+        //             return 0;
+        //         }
+        //     }
+        //     economyClassInput.value = newEconomyClassCount;
+
+        //     const slotsCharge = document.getElementById("economy-class-ticket-charge");
+        //     const perSlotsCharge = parseInt(slotsCharge.innerText);
+        //     const totalSlotsCharge = newEconomyClassCount * 100;
+        //     slotsCharge.innerText = totalSlotsCharge;
+        // }
     </script>
     <!--Thank You-->
 </body>
